@@ -54,12 +54,6 @@
             android:name="com.bestar.accessapp.service.WarningJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             />
-
-        <provider
-            android:name="com.bestar.accessapp.other.LoggerInitProvider"
-            android:authorities="${applicationId}.cp"
-            android:exported="false"
-            android:multiprocess="true"/>
     </application>
 
 </manifest>

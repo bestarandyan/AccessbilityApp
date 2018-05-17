@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.stetho.Stetho;
-import com.bestar.accessapp.storage.db.GreenDaoDatabase;
 
 /**
  * User:chenzhe
@@ -27,7 +26,7 @@ public class BaseApp extends Application {
     }
 
     private void initDB() {
-        GreenDaoDatabase.getInstance().init(this);
+
     }
 
 }

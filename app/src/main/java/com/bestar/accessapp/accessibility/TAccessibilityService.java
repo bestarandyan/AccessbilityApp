@@ -14,19 +14,11 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import com.bestar.accessapp.BaseApp;
 import com.bestar.accessapp.accessibility.presenter.DetailPresenter;
 import com.bestar.accessapp.accessibility.presenter.ErrorPresenter;
-import com.cocosw.favor.FavorAdapter;
-import com.bestar.accessapp.BaseApp;
-import com.bestar.accessapp.accessibility.presenter.DetailPresenter;
-import com.bestar.accessapp.accessibility.presenter.ErrorPresenter;
 import com.bestar.accessapp.accessibility.presenter.ListDataPresenter;
 import com.bestar.accessapp.accessibility.presenter.OtherSkipPresenter;
 import com.bestar.accessapp.notification.NotificationUtil;
 import com.bestar.accessapp.notification.WarningUtil;
-import com.bestar.accessapp.storage.SharePreTool;
-import com.bestar.accessapp.util.Click;
 import com.bestar.accessapp.util.LogEvent;
-import com.bestar.accessapp.window.FloatWindowView;
-import com.bestar.accessapp.window.TWindowManager;
 
 import timber.log.Timber;
 
@@ -41,7 +33,6 @@ public class TAccessibilityService extends AccessibilityService implements TAcce
     private static final int IS_HAVE_NODE = 0X006;
     private ListDataPresenter mListDataPresenter;
     private ErrorPresenter mErrorPresenter;
-    private SharePreTool mSharePreTool;
     private DetailPresenter mDetailPresenter;
     private static String currentCity = "上海";
     private boolean isHaveNode = false;
@@ -63,10 +54,7 @@ public class TAccessibilityService extends AccessibilityService implements TAcce
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (!mSharePreTool.getAppEnable()) {
-            TWindowManager.showFloatBtnWindow(this, mWindowBtnClickListener, FloatWindowView.FloatBtnType.START);
-            return;
-        }
+
         LogEvent.LOG(event);
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
             if (mHandler.hasMessages(MSG_TYPE_WINDOW_CONTENT_CHANGED)) {
@@ -162,7 +150,6 @@ public class TAccessibilityService extends AccessibilityService implements TAcce
 
     @Override
     public void onCreate() {
-        mSharePreTool = new FavorAdapter.Builder(this).build().create(SharePreTool.class);
         super.onCreate();
     }
 
@@ -207,21 +194,4 @@ public class TAccessibilityService extends AccessibilityService implements TAcce
         Log.e("destroy", "Service is destroy");
         super.onDestroy();
     }
-
-    private FloatWindowView.OnClickListener mWindowBtnClickListener = new FloatWindowView.OnClickListener() {
-        @Override
-        public void onClickBtn(FloatWindowView.FloatBtnType type) {
-            if (Click.isDblclick()) return;
-            if (type == FloatWindowView.FloatBtnType.PAUSE) {
-                mSharePreTool.setAppEnable(false);
-                TWindowManager.hideFloatBtn();
-                //TWindowManager.showFloatBtnWindow(TAccessibilityService.this, mWindowBtnClickListener, FloatWindowView.FloatBtnType.START);
-            } else if (type == FloatWindowView.FloatBtnType.START) {
-                mSharePreTool.setAppEnable(true);
-                TWindowManager.hideFloatBtn();
-                //TWindowManager.showFloatBtnWindow(TAccessibilityService.this, mWindowBtnClickListener, FloatWindowView.FloatBtnType.PAUSE);
-            }
-
-        }
-    };
 }

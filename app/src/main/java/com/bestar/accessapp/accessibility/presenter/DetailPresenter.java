@@ -15,9 +15,6 @@ import com.bestar.accessapp.BaseApp;
 import com.bestar.accessapp.accessibility.TAccessibilityInterface;
 import com.bestar.accessapp.accessibility.TAccessibilityService;
 import com.bestar.accessapp.notification.WarningUtil;
-import com.bestar.accessapp.storage.db.RentRecordBuilder;
-import com.bestar.accessapp.storage.db.RentHouseDBHelper;
-import com.bestar.accessapp.storage.network.RentNetworkHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -287,7 +284,6 @@ public class DetailPresenter extends BasePresenter {
 
     private void closeActivity() {
         hasClosePage = true;
-        insertRentItem();
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -317,25 +313,6 @@ public class DetailPresenter extends BasePresenter {
             }
         }, 2000);
     }
-
-    private void insertRentItem() {
-        String title = titleInfo != null && titleInfo.getText() != null ? titleInfo.getText().toString() : "";
-        String space = spaceInfo != null && spaceInfo.getText() != null ? spaceInfo.getText().toString() : "";
-        String price = priceNodeInfo != null && priceNodeInfo.getText() != null ? priceNodeInfo.getText().toString() : "";
-        String houseType = houseTypeInfo != null && houseTypeInfo.getText() != null ? houseTypeInfo.getText().toString() : "";
-        String phoneNum = this.phoneNum;
-
-        RentRecordBuilder builder = new RentRecordBuilder()
-                .setTitle(title)
-                .setArea(space)
-                .setRental(price)
-                .setType(houseType)
-                .setPhone(phoneNum)
-                .setCityName(TAccessibilityService.getCurrentCity());
-        new RentHouseDBHelper().insert(builder.create());
-        RentNetworkHelper.insert(builder.createModule());
-    }
-
     private AccessibilityNodeInfo getContentNodeInfo() {
         List<AccessibilityNodeInfo> nodeInfoList = null;
         AccessibilityNodeInfo contentNodeInfo = null;

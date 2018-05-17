@@ -15,10 +15,4 @@
         android:title="@string/job_close"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/get_app_sign_info"
-        android:orderInCategory="103"
-        android:title="获取签名信息"
-        app:showAsAction="ifRoom"/>
-
 </menu>

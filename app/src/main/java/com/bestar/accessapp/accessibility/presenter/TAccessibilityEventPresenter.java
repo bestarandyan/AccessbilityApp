@@ -6,8 +6,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.bestar.accessapp.accessibility.TAccessibilityInterface;
-import com.bestar.accessapp.accessibility.TAccessibilityInterface;
-import com.bestar.accessapp.storage.cache.GlobalCache;
 import com.bestar.accessapp.model.RecordItem;
 
 import java.util.List;
@@ -97,7 +95,6 @@ public class TAccessibilityEventPresenter {
             if (!TextUtils.isEmpty(result)) {
                 RecordItem item = new RecordItem();
                 item.setHousePhone(result);
-                GlobalCache.addRecord(item);
             }
         }
     }

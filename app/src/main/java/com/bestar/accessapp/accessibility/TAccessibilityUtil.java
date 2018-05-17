@@ -6,7 +6,8 @@ import android.content.Context;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
 
-import com.bestar.accessapp.other.Constants;
+
+import com.bestar.accessapp.util.Constants;
 
 import java.util.List;
 

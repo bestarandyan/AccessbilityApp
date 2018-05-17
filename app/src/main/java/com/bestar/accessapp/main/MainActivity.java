@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bestar.accessapp.R;
-import com.bestar.accessapp.storage.db.RentHouseDBHelper;
-import com.bestar.accessapp.storage.network.ServerConfig;
 import com.bestar.accessapp.util.AppSignUtil;
 import com.bestar.accessapp.util.Click;
 import com.bestar.accessapp.util.LFIoOps;
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, getIntent().getStringExtra("notification"), Toast.LENGTH_SHORT).show();
         }
         //TWindowManager.hideFloatBtn();
-        refreshDBItemCount();
+//        refreshDBItemCount();
         mMainPresenter.checkAccessibilityEnable();
     }
 
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (Click.isDblclick()) return;
         switch (v.getId()) {
             case R.id.switch_bar:
-                mMainPresenter.onSwitchBarChange();
                 break;
             case R.id.main_fab_btn:
                 mMainPresenter.onMainFab();
@@ -92,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Timber.e("warningService-->" + "监听服务被关闭");
                 ServiceUtils.closeJobService(this);
                 return true;
-            case R.id.get_app_sign_info:
-                getAppSignInfo();
-                return true;
             default:
                 break;
         }
@@ -109,13 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSwitchBar = findViewById(R.id.switch_bar);
         mSwitchBar.setOnClickListener(this);
     }
-
-    private void refreshDBItemCount() {
-        TextView textView = findViewById(R.id.db_data_num);
-        String result = "统计结果的条数是：" + new RentHouseDBHelper().getRecordCount() + "条";
-        textView.setText(result);
-    }
-
 
 
     /***
@@ -136,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    mMainPresenter.setAppEnable(isChecked);
+
                 }
             };
 

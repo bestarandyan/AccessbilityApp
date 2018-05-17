@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.bestar.accessapp.other;
+package com.bestar.accessapp.util;
 
 /**
  * Created by Ted on 2015/12/16.
@@ -25,6 +25,6 @@ public class Constants {
     public static String ACCESSIBILITY_SERVICE_NAME = "/.accessibility.TAccessibilityService";
     public static String WARNING_SERVICE_NAME = "/.service.WarningJobService";
     public static String GUARD_SERVICE_NAME = "/.service.WarningJobService";
-    public static String ACCESSIBILITY_PATH = "TAccessibilityService";
-    public static String GUARD_SERVICE_PATH = "WarningJobService";
+    public static String ACCESSIBILITY_PATH = "com.wkzf.chameleon.accessibility.TAccessibilityService";
+    public static String GUARD_SERVICE_PATH = "com.wkzf.chameleon.service.WarningJobService";
 }

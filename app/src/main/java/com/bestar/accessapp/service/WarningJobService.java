@@ -14,11 +14,6 @@ import com.bestar.accessapp.accessibility.TAccessibilityUtil;
 import com.bestar.accessapp.notification.NotificationUtil;
 import com.bestar.accessapp.notification.WarningUtil;
 import com.cocosw.favor.FavorAdapter;
-import com.bestar.accessapp.BaseApp;
-import com.bestar.accessapp.accessibility.TAccessibilityUtil;
-import com.bestar.accessapp.notification.NotificationUtil;
-import com.bestar.accessapp.notification.WarningUtil;
-import com.bestar.accessapp.storage.SharePreTool;
 
 /**
  * Created by lxx  on 2018/1/31
@@ -32,12 +27,6 @@ public class WarningJobService extends JobService {
             Log.e("warningService-->","监听服务监听结束===="+isRun);
             JobParameters param = (JobParameters) msg.obj;
             jobFinished(param, true);
-            SharePreTool mSharePreTool = new FavorAdapter.Builder(WarningJobService.this).build().create(SharePreTool.class);
-            if (!isRun && mSharePreTool.getAppEnable()){
-                WarningUtil.getInstance().serviceStoped(BaseApp.getContext());
-                NotificationUtil.sendNotification(getApplicationContext(), "监听服务已被终止");
-            }
-
             return true;
         }
     });
