@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+apply from: '../apk_config.gradle'
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.bestar.accessapp"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.1"
+    }
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+
+        release {
+            storeFile file("accessapp.jks")
+            storePassword "accessapp"
+            keyAlias "accessapp"
+            keyPassword "accessapp"
+            v2SigningEnabled false
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    greendao {
+        schemaVersion 2
+    }
+    buildToolsVersion '27.0.3'
+}
+
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.cocosw:favor:0.2.0@aar'
+    implementation 'com.github.GrenderG:Toasty:1.2.8'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.jakewharton.timber:timber:4.7.0'
+}

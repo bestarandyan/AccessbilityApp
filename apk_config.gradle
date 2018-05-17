@@ -1,0 +1,8 @@
+android.applicationVariants.all { variant ->
+    variant.outputs.all{
+//        println('==========' + project.name + '---' + variant.baseName
+//                + '---' + variant.name + '---' + variant.buildType.name
+//                + '----' + variant.flavorName)
+        outputFileName = "58爬虫客户端-${variant.flavorName}-${variant.buildType.name}-${variant.versionName}.apk"
+    }
+}

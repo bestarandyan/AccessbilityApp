@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.bestar.accessapp.com.bestar.accessapp.main.MainActivity">
+
+    <item
+        android:id="@+id/job_open"
+        android:orderInCategory="101"
+        android:title="@string/job_open"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/job_close"
+        android:orderInCategory="102"
+        android:title="@string/job_close"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/get_app_sign_info"
+        android:orderInCategory="103"
+        android:title="获取签名信息"
+        app:showAsAction="ifRoom"/>
+
+</menu>

@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_size_normal">56.0dip</dimen>
+    <dimen name="space_divider_inset">2.0dip</dimen>
+
+</resources>
