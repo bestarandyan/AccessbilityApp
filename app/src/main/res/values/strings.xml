@@ -10,7 +10,7 @@
     <string name="job_close">关闭监听服务</string>
     <string name="off">OFF</string>
     <string name="on">ON</string>
-    <string name="accessibility_use_todo_description">悟空找房开发的内部项目，用来实现自动化抓取58同城等App中的房源电话号码</string>
+    <string name="accessibility_use_todo_description">用来自动完成对app的操作</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
     <string name="system_alert_permission_rationale_dialog_text">为了抓取数据 <b>\“在其他应用上层显示\”</b> 权限需要打开，否则您将无法体验到所有功能。您也可在<b>\“更多\”-\“设置\”</b>中重新打开或者关闭。</string>

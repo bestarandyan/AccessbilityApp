@@ -6,13 +6,9 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-
-import com.bestar.accessapp.BaseApp;
-import com.bestar.accessapp.service.WarningJobService;
 
 public class ServiceUtils {
 	private static int JOB_ID = 1;
@@ -50,27 +46,6 @@ public class ServiceUtils {
 		}
 		return hasBeenScheduled ;
 	}
-
-
-
-	public static void startJobService1(){
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){//21  5.0
-			JobScheduler jobScheduler = (JobScheduler) BaseApp.getContext().getSystemService(Context.JOB_SCHEDULER_SERVICE);
-			ComponentName componentName = new ComponentName(BaseApp.getContext().getPackageName(), WarningJobService.class.getName());
-			JobInfo jobInfo = new JobInfo.Builder(ServiceUtils.JOB_ID,componentName)
-//                    .setPeriodic(100)
-//                    .setPersisted(true)
-					.setMinimumLatency(0)
-					.setBackoffCriteria(0,JobInfo.BACKOFF_POLICY_LINEAR)
-					.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-					.setOverrideDeadline(2000)
-					.build();
-
-			if(jobScheduler == null)return;
-			jobScheduler.schedule(jobInfo);
-		}
-	}
-
 
 	public static void closeJobService(Context context){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//21  5.0

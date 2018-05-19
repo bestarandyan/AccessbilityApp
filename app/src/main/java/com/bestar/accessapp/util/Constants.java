@@ -22,9 +22,5 @@ package com.bestar.accessapp.util;
  */
 public class Constants {
 
-    public static String ACCESSIBILITY_SERVICE_NAME = "/.accessibility.TAccessibilityService";
-    public static String WARNING_SERVICE_NAME = "/.service.WarningJobService";
-    public static String GUARD_SERVICE_NAME = "/.service.WarningJobService";
-    public static String ACCESSIBILITY_PATH = "com.wkzf.chameleon.accessibility.TAccessibilityService";
-    public static String GUARD_SERVICE_PATH = "com.wkzf.chameleon.service.WarningJobService";
+    public static String ACCESSIBILITY_SERVICE_NAME = "/.accessibility.AccessibilityAppService";
 }

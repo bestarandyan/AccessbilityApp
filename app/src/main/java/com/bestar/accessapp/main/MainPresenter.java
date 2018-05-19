@@ -19,14 +19,10 @@ package com.bestar.accessapp.main;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 
-import com.bestar.accessapp.accessibility.TAccessibilityUtil;
-import com.cocosw.favor.FavorAdapter;
+import com.bestar.accessapp.accessibility.AccessibilityUtil;
 import com.bestar.accessapp.R;
-import com.bestar.accessapp.util.VersionUtil;
 
 import es.dmoral.toasty.Toasty;
 
@@ -54,9 +50,49 @@ public class MainPresenter {
         } else Toasty.error(mContext, "没有相关权限~~~~~").show();
     }
 
+    /***
+     * 更新switch bar 对应的数据
+     *
+     */
+    public void onSwitchBarChange(boolean isChecked) {
+        setAppEnable(isChecked);
+    }
+    public void setAppEnable(boolean enable) {
+        if (enable) {
+            if (isSupportAccessibility()) {
+                mMainPageInterface.updateAccessibilitySwitchBar(true, true);
+            } else {
+                showAccessibilityDialog();
+            }
+        } else {
+            mMainPageInterface.updateAccessibilitySwitchBar(isSupportAccessibility(), false);
+        }
+    }
+
+    private void showAccessibilityDialog() {
+        new AlertDialog.Builder(mContext).setTitle(R.string.enable_accessibility_dialog_title)
+                .setMessage(R.string.enable_accessibility_service_message)
+                .setPositiveButton(R.string.open_settings, mAccessibilityDialogListener)
+                .setNegativeButton(R.string.cancel, mAccessibilityDialogListener)
+                .setCancelable(false)
+                .show();
+    }
+
+    private DialogInterface.OnClickListener mAccessibilityDialogListener =
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    if (which == -1) {
+                    } else {
+                        mMainPageInterface.updateAccessibilitySwitchBar(isSupportAccessibility(), true);
+                    }
+                }
+            };
+
     private boolean isSupportAccessibility() {
         MainActivity mainActivity = (MainActivity) mMainPageInterface;
-        return TAccessibilityUtil.isEnableAccessibility(mainActivity);
+        return AccessibilityUtil.isEnableAccessibility(mainActivity);
 //        return ServiceUtils.isServiceWork(mainActivity, Constants.ACCESSIBILITY_PATH);
     }
 

@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name="com.bestar.accessapp.BaseApp"
+        android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.bestar.accessapp.main.MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -34,9 +34,8 @@
         </activity>
 
         <service
-            android:name="com.bestar.accessapp.accessibility.TAccessibilityService"
+            android:name="com.bestar.accessapp.accessibility.AccessibilityAppService"
             android:enabled="true"
-
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
 
             <intent-filter>
@@ -45,15 +44,10 @@
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/ted_service_config"/>
+                android:resource="@xml/service_config"/>
 
         </service>
 
-        <service android:enabled="true"
-            android:isolatedProcess="false"
-            android:name="com.bestar.accessapp.service.WarningJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
     </application>
 
 </manifest>

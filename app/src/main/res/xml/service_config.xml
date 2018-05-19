@@ -7,4 +7,4 @@
     android:canRetrieveWindowContent="true"
     android:description="@string/accessibility_use_todo_description"
     android:notificationTimeout="100"
-    android:packageNames="com.wuba,com.android.contacts"/>
+    android:packageNames="com.tencent.mm,com.wuba,com.android.contacts"/>

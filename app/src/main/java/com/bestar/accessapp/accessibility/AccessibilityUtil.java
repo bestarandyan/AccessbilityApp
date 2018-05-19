@@ -15,7 +15,7 @@ import java.util.List;
  * Created by ted on 2018/4/17.
  * in com.tedxiong.helper.accessibility
  */
-public class TAccessibilityUtil {
+public class AccessibilityUtil {
 
     public static boolean isAccessibilitySettingsOn(Context context) {
         int accessibilityEnabled = 0;
